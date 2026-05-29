@@ -462,12 +462,10 @@
       <h2 class="reveal">Sposatevi spendendo la metà.</h2>
       <p class="lead reveal">Lasciaci nome ed email: ti avvisiamo appena apriamo gli abbinamenti nella tua zona. Le prime coppie avranno il coordinator in omaggio.</p>
 
-      <form class="signup reveal" id="signupForm" action="https://formsubmit.co/ciao@splitwed.it" method="post" novalidate>
-        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
-        <input type="hidden" name="_subject" value="Nuova iscrizione lista d'attesa SplitWed" />
-        <input type="hidden" name="_template" value="table" />
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_next" value="https://splitwed.it/?iscritto=1#waitlist" />
+      <form class="signup reveal" id="signupForm" action="https://api.web3forms.com/submit" method="post" novalidate>
+        <input type="hidden" name="access_key" value="15494257-b5af-4c83-9809-43d3278dc0a0" />
+        <input type="hidden" name="subject" value="Nuova iscrizione lista d'attesa SplitWed" />
+        <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true" style="display:none;" />
         <input type="hidden" name="_autoresponse" value="Ciao! Grazie per esserti iscritto alla lista d'attesa di SplitWed. Ti avviseremo via email appena apriremo gli abbinamenti nella tua zona: le prime coppie iscritte avranno il wedding coordinator in omaggio. Nel frattempo, iniziate a sognare il vostro giorno. A presto, il team di SplitWed." />
         <div class="field" id="f-name">
           <label for="nome">Nome della coppia</label>
@@ -602,17 +600,11 @@
   emailInput.addEventListener('input', function () { clearErr(emailField, emailInput); emailField.querySelector('.msg').textContent = "Inserisci un'email valida."; });
   privacyInput.addEventListener('change', function () { if (privacyInput.checked) privacyField.classList.remove('invalid'); });
 
-  function showSuccess(name) {
-    var coppia = (name || '').trim().split(/[&,/]| e /i)[0].trim() || 'Ci siamo';
+  function showSuccess() {
+    var coppia = nameInput.value.trim().split(/[&,/]| e /i)[0].trim() || 'Ci siamo';
     successName.textContent = 'Ci siamo, ' + coppia + '!';
     form.style.display = 'none';
     successBox.classList.add('show');
-  }
-
-  // Returning from FormSubmit redirect after successful submission
-  if (window.location.search.indexOf('iscritto=1') !== -1) {
-    try { var savedName = sessionStorage.getItem('sw_name'); sessionStorage.removeItem('sw_name'); showSuccess(savedName); } catch (ex) { showSuccess(''); }
-    history.replaceState(null, '', '#waitlist');
   }
 
   form.addEventListener('submit', function (e) {
@@ -623,9 +615,19 @@
     if (!privacyInput.checked) { privacyField.classList.add('invalid'); ok = false; }
     if (!ok) { var fe = form.querySelector('.field.invalid input, .consent.invalid input'); if (fe) fe.focus(); return; }
 
-    try { sessionStorage.setItem('sw_name', nameInput.value.trim()); } catch (ex) {}
+    var orig = submitBtn.innerHTML;
     submitBtn.disabled = true; submitBtn.style.opacity = '0.7'; submitBtn.textContent = 'Invio in corso…';
-    form.submit();
+    fetch(form.getAttribute('action'), { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+      .then(function (r) { return r.json().catch(function () { return { success: r.ok }; }); })
+      .then(function (data) {
+        if (data && data.success) showSuccess(); else throw new Error((data && data.message) || 'Errore');
+      })
+      .catch(function () {
+        submitBtn.disabled = false; submitBtn.style.opacity = ''; submitBtn.innerHTML = orig;
+        emailField.classList.add('invalid');
+        emailField.querySelector('.msg').textContent = 'Ops, invio non riuscito. Riprova o scrivici a ciao@splitwed.it.';
+        emailInput.classList.add('err');
+      });
   });
 
   // Cookie banner
