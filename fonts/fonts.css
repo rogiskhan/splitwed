@@ -1,0 +1,64 @@
+/* ============================================================
+   SplitWed — Font self-hosted (nessuna chiamata a Google)
+   I file .woff2 vanno messi in questa stessa cartella /fonts.
+   Vedi SCARICA-I-FONT.txt per le istruzioni.
+   ============================================================ */
+
+/* ---------- Cormorant Garamond ---------- */
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal; font-weight: 400; font-display: swap;
+  src: url("cormorant-garamond-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal; font-weight: 500; font-display: swap;
+  src: url("cormorant-garamond-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal; font-weight: 600; font-display: swap;
+  src: url("cormorant-garamond-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal; font-weight: 700; font-display: swap;
+  src: url("cormorant-garamond-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: italic; font-weight: 400; font-display: swap;
+  src: url("cormorant-garamond-400-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: italic; font-weight: 600; font-display: swap;
+  src: url("cormorant-garamond-600-italic.woff2") format("woff2");
+}
+
+/* ---------- Mulish ---------- */
+@font-face {
+  font-family: "Mulish";
+  font-style: normal; font-weight: 400; font-display: swap;
+  src: url("mulish-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Mulish";
+  font-style: normal; font-weight: 500; font-display: swap;
+  src: url("mulish-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Mulish";
+  font-style: normal; font-weight: 600; font-display: swap;
+  src: url("mulish-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Mulish";
+  font-style: normal; font-weight: 700; font-display: swap;
+  src: url("mulish-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Mulish";
+  font-style: normal; font-weight: 800; font-display: swap;
+  src: url("mulish-800.woff2") format("woff2");
+}

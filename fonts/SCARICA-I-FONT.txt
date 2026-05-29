@@ -1,0 +1,89 @@
+============================================================
+ SPLITWED — COME INSTALLARE I FONT IN LOCALE
+============================================================
+
+Il sito è già configurato per usare i font installati sul TUO server,
+senza chiamare Google. Devi solo scaricare 11 file .woff2 e metterli
+in questa cartella (/fonts), con i nomi indicati qui sotto.
+
+Ci vogliono ~5 minuti. Nessun codice da scrivere.
+
+------------------------------------------------------------
+ PASSO 1 — Vai sul generatore di font
+------------------------------------------------------------
+Apri:  https://gwfh.mranftl.com/fonts
+(è "google-webfonts-helper", uno strumento gratuito e affidabile
+ che impacchetta i Google Fonts per il self-hosting)
+
+------------------------------------------------------------
+ PASSO 2 — Scarica "Cormorant Garamond"
+------------------------------------------------------------
+1. Cerca "Cormorant Garamond"
+2. In "Select styles" spunta questi pesi:
+      - 400 (regular)        - 400 italic
+      - 500 (medium)         - 600 italic
+      - 600 (semi-bold)
+      - 700 (bold)
+3. In "Copy CSS" assicurati che il formato sia "woff2" (Modern Browsers)
+4. Clicca "Download files" -> ottieni un .zip
+5. Estrai i .woff2 e RINOMINALI così:
+
+      regular        ->  cormorant-garamond-400.woff2
+      500            ->  cormorant-garamond-500.woff2
+      600            ->  cormorant-garamond-600.woff2
+      700            ->  cormorant-garamond-700.woff2
+      italic         ->  cormorant-garamond-400-italic.woff2
+      600italic      ->  cormorant-garamond-600-italic.woff2
+
+------------------------------------------------------------
+ PASSO 3 — Scarica "Mulish"
+------------------------------------------------------------
+1. Cerca "Mulish"
+2. Spunta i pesi: 400, 500, 600, 700, 800 (tutti "regular", niente italic)
+3. Download files -> estrai e rinomina:
+
+      regular   ->  mulish-400.woff2
+      500       ->  mulish-500.woff2
+      600       ->  mulish-600.woff2
+      700       ->  mulish-700.woff2
+      800       ->  mulish-800.woff2
+
+------------------------------------------------------------
+ PASSO 4 — Carica i file
+------------------------------------------------------------
+Metti tutti gli 11 file .woff2 in questa cartella /fonts, accanto
+a "fonts.css". Carica poi l'intera cartella sul repository GitHub,
+nella stessa posizione di index.html.
+
+Struttura finale sul server:
+   /index.html
+   /privacy.html
+   /fonts/fonts.css
+   /fonts/cormorant-garamond-400.woff2
+   /fonts/cormorant-garamond-500.woff2
+   /fonts/... (tutti gli altri)
+   /fonts/mulish-400.woff2
+   /fonts/...
+
+------------------------------------------------------------
+ ELENCO COMPLETO DEI FILE ATTESI (11)
+------------------------------------------------------------
+[ ] cormorant-garamond-400.woff2
+[ ] cormorant-garamond-500.woff2
+[ ] cormorant-garamond-600.woff2
+[ ] cormorant-garamond-700.woff2
+[ ] cormorant-garamond-400-italic.woff2
+[ ] cormorant-garamond-600-italic.woff2
+[ ] mulish-400.woff2
+[ ] mulish-500.woff2
+[ ] mulish-600.woff2
+[ ] mulish-700.woff2
+[ ] mulish-800.woff2
+
+NOTA: se manca qualche file, quel peso userà un font di sistema di
+ripiego (Georgia / sans-serif). Il sito funziona comunque, ma per
+una resa identica all'anteprima servono tutti gli 11 file.
+
+I font Cormorant Garamond e Mulish sono rilasciati con SIL Open Font
+License: il self-hosting è pienamente consentito.
+============================================================
